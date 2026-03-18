@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【改訂版】管理部門向け AI活用ロードマップ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * { box-sizing: border-box; }
+        p { margin: 0; margin-bottom: 15px; }
+        body {
+            background-color: #f1f3f4;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px 0;
+            place-items: center;
+        }
+
+        .slide-container {
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #4285F4;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Noto Sans JP', sans-serif;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 50px 60px;
+            position: relative;
+            width: 1280px;
+        }
+
+        #slide1 { border-top: none; }
+        #slide1::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background: linear-gradient(to right, #4285F4 25%, #EA4335 25%, #EA4335 50%, #FBBC05 50%, #FBBC05 75%, #34A853 75%);
+            z-index: 10;
+        }
+
+        .slide-container > * { position: relative; z-index: 1; }
+
+        /* 2. TYPOGRAPHY */
+        .slide-container h1, .slide-container h2, .slide-container h3 {
+            color: #202124; font-weight: 700; margin: 0;
+        }
+        .slide-container p, .slide-container li, .slide-container .subtitle {
+            color: #5f6368; font-family: 'Noto Sans JP', sans-serif; font-weight: 400;
+        }
+
+        .slide-container h1 { font-size: 56px; line-height: 1.3; color: #202124; }
+        .slide-container .slide-title {
+            font-size: 44px; font-weight: 700; margin-bottom: 40px; text-align: left; width: 100%;
+            color: #202124; border-bottom: 2px solid #e8eaed; padding-bottom: 10px;
+        }
+        .slide-container h3 { font-size: 28px; margin-bottom: 15px; color: #1a73e8; }
+        .slide-container p, .slide-container li { font-size: 20px; line-height: 1.6; }
+        .slide-container .subtitle { font-size: 24px; margin: 20px auto; color: #5f6368; }
+
+        .slide-container .content-area {
+            align-items: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%;
+        }
+
+        /* 3. LAYOUTS */
+        .title-layout { text-align: center; max-width: 1000px; }
+        
+        .two-column {
+            align-items: flex-start; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%;
+        }
+        .two-column.tiled { align-items: stretch; height: 100%; }
+        .two-column.tiled > div {
+            background-color: #f8f9fa; border-radius: 12px; border: 1px solid #dadce0; padding: 40px; text-align: left;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .tiled-content {
+            align-items: stretch; display: flex; gap: 40px; justify-content: center; width: 100%;
+        }
+        .tile {
+            align-items: center; background-color: #f8f9fa; border-radius: 12px; border: 1px solid #dadce0;
+            display: flex; flex-direction: column; flex: 1; justify-content: flex-start; padding: 40px 30px; text-align: center;
+        }
+        .tile .icon { font-size: 56px; margin-bottom: 25px; }
+
+        .bullet-list { max-width: 1100px; width: 100%; }
+        .bullet-list ul { list-style: none; margin: 0; padding: 0; }
+        .bullet-list li { gap: 15px; margin-bottom: 30px; padding-left: 50px; position: relative; }
+        .bullet-list i { font-size: 28px; left: 0; margin-top: 2px; position: absolute; text-align: center; top: 0; }
+
+        .highlight-box {
+            background-color: #e8f0fe; border-left: 6px solid #4285F4; padding: 25px 35px; border-radius: 4px; margin-bottom: 30px;
+        }
+        .highlight-box h4 { color: #1a73e8; font-size: 22px; margin: 0 0 10px 0; }
+
+        strong { color: #202124; font-weight: 700; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 16px; font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+        .tag.blue { background-color: #e8f0fe; color: #1a73e8; }
+        .tag.green { background-color: #e6f4ea; color: #137333; }
+        .tag.yellow { background-color: #fef7e0; color: #b06000; }
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <span class="tag blue" style="font-size: 20px; padding: 8px 20px;">改訂版・社内提案用</span>
+        <h1>【技術事務・管理部門向け】<br>AI活用とスキル定義ロードマップ</h1>
+        <p class="subtitle">〜ファクトに基づくスキル定義と、パラリーガル的専門業務の高度化〜</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">現状の課題認識と本プロジェクトの真の目的</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>1. 「AIスキル」の基準不在</h3>
+                <p>現在、全社的に「何ができればAIスキルが高いのか」という<strong>客観的指標が存在していません。</strong></p>
+                <p>管理部門には自作HP構築やプログラミングが可能な高スキルIT人材も在籍しており、「管理部門＝AIスキルが低い」という認識はファクトに基づきません。</p>
+            </div>
+            <div>
+                <h3>2. 専門性の高い業務特性</h3>
+                <p>技術事務の主業務は、対省庁の書類提出や客先への厳密な報告（パラリーガル的業務）です。</p>
+                <p>単なる「文章作成」ではなく、<strong>「ルールの厳密な遵守と正確性」</strong>が求められるため、一般的なAI導入ではなく、業務に特化した独自の活用法が必要です。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Phase 1：スキルの「定義」と現状の「可視化」（1〜2ヶ月目）</h2>
+    <div class="content-area">
+        <div class="highlight-box" style="width: 100%;">
+            <h4>アクション：社内AIスキル指標の策定と全社アンケートの実施</h4>
+            <p>漠然とした評価をなくすため、レベル1（調べもの）〜 レベル4（業務フローに合わせたAIツール自作）までの指標を定義し、部門内のITスキルを数値化・証明します。</p>
+        </div>
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-ruler-combined" style="color: #4285F4;"></i></div>
+                <h3>指標の策定</h3>
+                <p>技術部門にも適用可能な、全社共通の「AIスキルレベル」の基準を作成します。</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-users-gear" style="color: #34A853;"></i></div>
+                <h3>コアチーム結成</h3>
+                <p>既存の高スキルIT人材（プログラミング層）を巻き込み、推進チームを構築します。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Phase 2：専門業務特化型のプロンプト＆仕組み開発（3〜4ヶ月目）</h2>
+    <div class="content-area">
+        <p style="margin-bottom: 30px; text-align: center;">高スキルメンバーの技術力を活かし、各部署の「重たい業務」を解決するAIの仕組みを構築します。</p>
+        <div class="two-column">
+            <div>
+                <h3 style="color: #4285F4;"><i class="fa-solid fa-file-contract"></i> 技術事務（対省庁・客先）</h3>
+                <ul>
+                    <li><strong>省庁ガイドラインのチェック補助：</strong> 長大なPDFをGeminiに読み込ませ、「ガイドライン第◯条に抵触する箇所がないか」を一次スクリーニング。</li>
+                    <li><strong>客先報告書のフォーマット統一：</strong> 技術担当者の粒度がバラバラなメモを、客先提出用の厳格なフォーマットへAIに書き換えさせる仕組み。</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: #34A853;"><i class="fa-solid fa-calculator"></i> 経理部・総務部</h3>
+                <ul>
+                    <li><strong>経理：</strong> ITスキル層と連携し、スプレッドシートのGAS（マクロ）をGeminiに書かせ、毎月の集計を半自動化。</li>
+                    <li><strong>総務：</strong> 過去の規程・契約書に基づく条文案のドラフト作成と、新旧の表記揺れ自動チェック。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Phase 3：ボトムアップと「型」の共有（5〜6ヶ月目）</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <span class="tag blue">標準化</span>
+                <div class="icon"><i class="fa-solid fa-copy" style="color: #4285F4;"></i></div>
+                <h3>テンプレートの全社共有</h3>
+                <p>「省庁提出書類の校正用プロンプト」など、コピペで精度の高い結果が出せるテンプレートをDocsで整備・共有します。</p>
+            </div>
+            <div class="tile">
+                <span class="tag green">教育</span>
+                <div class="icon"><i class="fa-solid fa-people-arrows" style="color: #34A853;"></i></div>
+                <h3>スキル別ペアワークの実施</h3>
+                <p>「レベル3以上の人」と「レベル1の人」がペアになり、実際の業務課題をAIで一緒に解決するOJTを実施します。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">Phase 4：技術部門への「逆提案」と成功の鍵（半年以降）</h2>
+    <div class="content-area">
+        <div class="bullet-list">
+            <ul>
+                <li><i class="fa-solid fa-handshake" style="color: #4285F4;"></i><strong>ファクトベースでの逆提案：</strong><br>管理部門での効率化実績と「AIスキル指標」のデータをもとに、技術部門へ「全社的なスキル基準の統一と底上げ」をフラットに提案します。</li>
+                
+                <li><i class="fa-solid fa-triangle-exclamation" style="color: #EA4335;"></i><strong>ハルシネーション（AIの嘘）対策の徹底：</strong><br>対省庁・客先書類においてAIの出力の鵜呑みは厳禁です。AIは「優秀な助手（一次チェック）」とし、<strong>最終的な事実確認は必ず人間（パラリーガル的視点）が行う運用ルール</strong>を絶対条件とします。</li>
+                
+                <li><i class="fa-solid fa-fire" style="color: #FBBC05;"></i><strong>高スキル人材のモチベーション管理：</strong><br>プログラミング層には「受講者」ではなく「仕組みを創るリード役」を任せることで、プロジェクトの強力な推進力へと変えます。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
