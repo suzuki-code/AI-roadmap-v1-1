@@ -1,1 +1,151 @@
+import React from 'react';
+import { Search, Zap, Briefcase, Rocket, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react';
 
+const RoadmapCard = ({ phase, month, title, icon: Icon, items, color, bgColor }) => (
+  <div className="relative flex items-start mb-12 group">
+    {/* Timeline Line */}
+    <div className="absolute top-10 left-6 -ml-px h-full w-0.5 bg-gray-200 group-last:hidden" aria-hidden="true"></div>
+    
+    {/* Icon Node */}
+    <div className={`relative flex h-12 w-12 flex-none items-center justify-center rounded-full ${bgColor} ring-8 ring-white z-10 shadow-sm transition-transform duration-300 group-hover:scale-110`}>
+      <Icon className={`h-6 w-6 ${color}`} />
+    </div>
+
+    {/* Content */}
+    <div className="ml-6 flex-auto rounded-lg bg-white p-6 shadow-md ring-1 ring-gray-200 transition-all duration-300 group-hover:shadow-lg group-hover:ring-gray-300">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+        <div className="flex items-center gap-3">
+          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${bgColor} ${color}`}>
+            {phase}
+          </span>
+          <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+        </div>
+        <span className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full w-fit">
+          {month}
+        </span>
+      </div>
+      
+      <ul className="mt-4 space-y-3">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-start text-gray-600 text-sm">
+            <CheckCircle className={`h-5 w-5 mr-2 flex-shrink-0 ${color}`} />
+            <span>
+              {item.label && <strong className="font-semibold text-gray-800">{item.label}: </strong>}
+              {item.text}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
+
+export default function App() {
+  const roadmapData = [
+    {
+      phase: 'Phase 1',
+      month: '1ヶ月目',
+      title: '現状把握とマインドセット',
+      icon: Search,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-100',
+      items: [
+        { text: '管理部門内のAI利用状況・業務課題のアンケート調査' },
+        { text: '「機密情報の扱い方」などセキュリティルールの策定と共有' },
+        { text: '「調べもの・要約」から始める基礎体験ワークショップの開催' }
+      ]
+    },
+    {
+      phase: 'Phase 2',
+      month: '2〜3ヶ月目',
+      title: '日常業務へのAI定着',
+      icon: Zap,
+      color: 'text-indigo-600',
+      bgColor: 'bg-indigo-100',
+      items: [
+        { text: 'Gmailでの「社内通知・顧客返信」文案の自動生成' },
+        { text: 'Google Meetとドキュメントを使った議事録の自動要約' },
+        { text: '誰でも同じ結果が出せる「プロンプト（指示文）テンプレート」の共有' }
+      ]
+    },
+    {
+      phase: 'Phase 3',
+      month: '4〜5ヶ月目',
+      title: '部署・業務特化型の活用',
+      icon: Briefcase,
+      color: 'text-teal-600',
+      bgColor: 'bg-teal-100',
+      items: [
+        { label: '経理部', text: 'スプレッドシートの関数生成、データクレンジング補助' },
+        { label: '総務部', text: '社内規程の改定案作成、差分チェック、社内FAQの自動整理' },
+        { label: '営業事務', text: '営業報告書からの傾向分析、定例レポートのサマリー作成' }
+      ]
+    },
+    {
+      phase: 'Phase 4',
+      month: '6ヶ月目以降',
+      title: '自律的な改善と社内展開',
+      icon: Rocket,
+      color: 'text-orange-600',
+      bgColor: 'bg-orange-100',
+      items: [
+        { text: '各部署から「AI推進アンバサダー」を選出し、定期会議を実施' },
+        { text: '「こんな業務が時短できた」成功事例の社内共有会（月1回）' },
+        { text: '管理部門の成功事例をもとに、技術部門へ全社展開を「逆提案」' }
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="max-w-4xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            管理部門向け AI（Google Workspace）活用ロードマップ
+          </h1>
+          <p className="mt-4 text-lg text-gray-600">
+            「調べもの」レベルから脱却し、AIを業務のパートナーとして使いこなすためのステップ
+          </p>
+        </div>
+
+        {/* Roadmap Timeline */}
+        <div className="pb-8">
+          {roadmapData.map((data, index) => (
+            <RoadmapCard key={index} {...data} />
+          ))}
+        </div>
+
+        {/* Key Success Factors */}
+        <div className="mt-8 bg-blue-50 rounded-xl p-8 border border-blue-100 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <AlertTriangle className="h-6 w-6 text-blue-600" />
+            <h3 className="text-xl font-bold text-blue-900">プロジェクト成功の鍵（マネジメントの心得）</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-5 rounded-lg shadow-sm">
+              <h4 className="font-bold text-gray-800 mb-2 flex items-center">
+                <ArrowRight className="h-4 w-4 text-blue-500 mr-2" />
+                プログラミングスキルは不要
+              </h4>
+              <p className="text-sm text-gray-600">
+                技術部門が求める高度なスキルではなく、「定型業務をいかにAIで早く正確に終わらせるか」に焦点を当てる。
+              </p>
+            </div>
+            <div className="bg-white p-5 rounded-lg shadow-sm">
+              <h4 className="font-bold text-gray-800 mb-2 flex items-center">
+                <ArrowRight className="h-4 w-4 text-blue-500 mr-2" />
+                具体的な「業務シーン」とセットで
+              </h4>
+              <p className="text-sm text-gray-600">
+                「とりあえずAIを触って」ではなく、「明日の会議の議事録まとめに使ってみよう」と具体的に指示する。
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
